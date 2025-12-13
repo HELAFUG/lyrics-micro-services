@@ -19,10 +19,17 @@ class LogConfig(BaseModel):
 
 class APIV1(BaseModel):
     prefix: str = "/v1"
+    auth: str = "/auth"
 
 
 class APIConfig(BaseModel):
     prefix: str = "/api"
+
+    @property
+    def bearer_token_to_url(self):
+        parts = (self.pretix, self.v1.prefix, self.v1.auth, "/login")
+        path = "".join(parts)
+        return path.removeprefix("/")
 
 
 class SRVConfig(BaseModel):

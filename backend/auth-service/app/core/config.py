@@ -24,10 +24,11 @@ class APIV1(BaseModel):
 
 class APIConfig(BaseModel):
     prefix: str = "/api"
+    v1: APIV1 = APIV1()
 
     @property
     def bearer_token_to_url(self):
-        parts = (self.pretix, self.v1.prefix, self.v1.auth, "/login")
+        parts = (self.prefix, self.v1.prefix, self.v1.auth, "/login")
         path = "".join(parts)
         return path.removeprefix("/")
 

@@ -17,12 +17,12 @@ class DBHelper:
             autocommit=False,
         )
 
-        async def session_getter() -> AsyncGenerator[AsyncSession, None]:
-            async with self.session_factory() as session:
-                yield session
+    async def session_getter(self) -> AsyncGenerator[AsyncSession, None]:
+        async with self.session_factory() as session:
+            yield session
 
-        async def dispose(self):
-            await self.engine.dispose()
+    async def dispose(self):
+        await self.engine.dispose()
 
 
 db_helper = DBHelper(

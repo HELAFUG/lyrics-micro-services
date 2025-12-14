@@ -69,6 +69,10 @@ class NofifyService(BaseModel):
         return self.url + "api/notify-service/after-login/"
 
 
+class TaskIQConfig(BaseModel):
+    url: str = getenv("TASKIQ_URL", "amqp://guest:guest@localhost:5672/")
+
+
 class Settings(BaseSettings):
     log: LogConfig = LogConfig()
     api_v1: APIV1 = APIV1()
@@ -77,6 +81,10 @@ class Settings(BaseSettings):
     db: DBConfig = DBConfig()
     access_token: AccessToken = AccessToken()
     notify_service: NofifyService = NofifyService()
+    taskiq: TaskIQConfig = TaskIQConfig()
 
 
 settings = Settings()
+
+if DEBUG:
+    settings.log.level = "DEBUG"

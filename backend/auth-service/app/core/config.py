@@ -57,6 +57,18 @@ class AccessToken(BaseModel):
     verification_token_secret: str = getenv("VERIFICATION_TOKEN_SECRET")
 
 
+class NofifyService(BaseModel):
+    url: str = getenv("NOTIFY_SERVICE_URL")
+
+    @property
+    def after_register_url(self):
+        return self.url + "api/notify-service/after_register/"
+
+    @property
+    def after_login_url(self):
+        return self.url + "api/notify-service/after-login/"
+
+
 class Settings(BaseSettings):
     log: LogConfig = LogConfig()
     api_v1: APIV1 = APIV1()
@@ -64,6 +76,7 @@ class Settings(BaseSettings):
     srv: SRVConfig = SRVConfig()
     db: DBConfig = DBConfig()
     access_token: AccessToken = AccessToken()
+    notify_service: NofifyService = NofifyService()
 
 
 settings = Settings()

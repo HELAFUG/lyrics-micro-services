@@ -45,6 +45,7 @@ class APIConfig(BaseModel):
 class Settings(BaseSettings):
     user_service: UserServiceConfig = UserServiceConfig()
     srv: SRVConfig = SRVConfig()
+    api: APIConfig = APIConfig()
     log: LogConfig = LogConfig()
     admin: AdminConfig = AdminConfig()
 

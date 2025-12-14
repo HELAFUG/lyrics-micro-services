@@ -17,8 +17,8 @@ taskiq_fastapi.init(broker=broker, app_or_path="main:app")
 @broker.on_event(TaskiqEvents.WORKER_STARTUP)
 async def on_worker_start_up(state: TaskiqState) -> None:
     logging.basicConfig(
-        level=settings.logging.log_level,
-        datefmt=settings.logging.datefmt,
+        level=settings.log.level,
+        datefmt=settings.log.datefmt,
     )
     log.info("Worker started up: %r", state)
 

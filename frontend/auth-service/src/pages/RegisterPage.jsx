@@ -1,5 +1,6 @@
 import React from "react";
-import AuthForm from "../components/AuthForm";
+// In LoginPage.jsx
+import AuthForm from '../components/AuthForm'; // Ensure path and filename are correct
 import { Link } from "react-router-dom";
 
 const RegisterPage = () => (

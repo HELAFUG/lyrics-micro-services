@@ -37,6 +37,11 @@ class AdminConfig(BaseModel):
     password: str = getenv("ADMIN_PASSWORD")
 
 
+class APIConfig(BaseModel):
+    prefix: str = "/api/"
+    notify: str = "/notify-service/"
+
+
 class Settings(BaseSettings):
     user_service: UserServiceConfig = UserServiceConfig()
     srv: SRVConfig = SRVConfig()

@@ -38,8 +38,8 @@ class AdminConfig(BaseModel):
 
 
 class APIConfig(BaseModel):
-    prefix: str = "/api/"
-    notify: str = "/notify-service/"
+    prefix: str = "/api"
+    notify: str = "/notify-service"
 
 
 class Settings(BaseSettings):

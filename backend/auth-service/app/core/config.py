@@ -62,11 +62,11 @@ class NofifyService(BaseModel):
 
     @property
     def after_register_url(self):
-        return self.url + "api/notify-service/users/after_register/"
+        return self.url + "api/notify-service/users/after-register"
 
     @property
     def after_login_url(self):
-        return self.url + "api/notify-service/users/after-login/"
+        return self.url + "api/notify-service/users/after-login"
 
 
 class TaskIQConfig(BaseModel):

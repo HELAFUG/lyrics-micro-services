@@ -6,9 +6,9 @@ log = logging.getLogger(__name__)
 
 
 async def after_register(user_email: str):
-    async with ClientSession() as session:
+    async with ClientSession(base_url=settings.notify_service.url) as session:
         async with session.post(
-            f"{settings.notify_service.after_register_url}/{user_email}/"
+            f"{settings.notify_service.after_register_url}"
         ) as response:
             match response.status:
                 case 200:

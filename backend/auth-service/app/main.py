@@ -24,7 +24,9 @@ async def lifespan(app: FastAPI):
     await db_helper.dispose()
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    title="Lyrics Auth Service", description="Lyrics Auth Service", lifespan=lifespan
+)
 
 app.include_router(api_router)
 

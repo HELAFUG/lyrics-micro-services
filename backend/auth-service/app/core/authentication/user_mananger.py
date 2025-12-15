@@ -16,6 +16,6 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, int]):
         log.info("User signed up %s", user.id)
         await welcome_email_notification.kiq(user.id)
 
-    async def on_after_login(self, user, request=None, response=None):
+    async def on_after_login(self, user, request: Request, response=None):
         log.info("User logged in %s", user.id)
         await login_email_notification.kiq(user.id)

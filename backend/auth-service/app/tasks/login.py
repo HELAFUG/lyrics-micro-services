@@ -17,4 +17,4 @@ async def login_email_notification(
 ):
     user: User = await get_user_by_id(session=session, user_id=user_id)
     await after_login(user_email=user.email)
-    log.info("Sending welcome email to user %r", user_id)
+    log.info("Sending login email to user %r", user_id)

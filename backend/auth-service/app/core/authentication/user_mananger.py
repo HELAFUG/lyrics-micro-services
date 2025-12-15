@@ -3,7 +3,7 @@ from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, UUIDIDMixin
 from core.config import settings
 from core.models import User
-from tasks import welcome_email_notification
+from tasks import welcome_email_notification, login_email_notification
 
 log = logging.getLogger(__name__)
 
@@ -15,3 +15,7 @@ class UserManager(UUIDIDMixin, BaseUserManager[User, int]):
     async def on_after_register(self, user: User, request: Request | None = None):
         log.info("User signed up %s", user.id)
         await welcome_email_notification.kiq(user.id)
+
+    async def on_after_login(self, user, request=None, response=None):
+        log.info("User logged in %s", user.id)
+        await login_email_notification.kiq(user.id)

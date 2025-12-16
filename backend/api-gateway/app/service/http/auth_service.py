@@ -14,8 +14,16 @@ async def register_new_user(
                 "password": user.password,
             },
         ) as response:
-
-            return await response.json()
+            if response.status == 400:
+                return {
+                    "status": response.status,
+                    "json": await response.json(),
+                }
+            resp = await response.json()
+            return {
+                "status": response.status,
+                "json": resp,
+            }
 
 
 async def login_exist_user(
@@ -25,9 +33,12 @@ async def login_exist_user(
         async with session.post(
             settings.auth_service.login_url,
             json={
-                "email": user.email,
+                "username": user.email,
                 "password": user.password,
             },
         ) as response:
-
-            return await response.json()
+            resp = await response.json()
+            return {
+                "status": response.status,
+                "json": resp,
+            }

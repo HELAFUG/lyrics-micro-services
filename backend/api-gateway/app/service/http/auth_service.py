@@ -7,17 +7,27 @@ async def register_new_user(
     user: UserCreate,
 ):
     async with ClientSession() as session:
-        try:
+        async with session.post(
+            settings.auth_service.register_url,
+            json={
+                "email": user.email,
+                "password": user.password,
+            },
+        ) as response:
 
-            async with session.post(
-                settings.auth_service.register_url,
-                json={
-                    "email": user.email,
-                    "password": user.password,
-                },
-            ) as response:
+            return await response.json()
 
-                return await response.json()
 
-        except Exception as e:
-            print(e)
+async def login_exist_user(
+    user: UserCreate,
+):
+    async with ClientSession() as session:
+        async with session.post(
+            settings.auth_service.login_url,
+            json={
+                "email": user.email,
+                "password": user.password,
+            },
+        ) as response:
+
+            return await response.json()

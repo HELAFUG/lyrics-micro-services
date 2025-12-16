@@ -8,4 +8,4 @@ async def check_exist_user(session: AsyncSession, email: str):
     if user:
         raise HTTPException(status_code=200, detail=True)
 
-    return False
+    return {"detail": False}

@@ -5,8 +5,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from service.users import check_exist_user
 from core.models import db_helper
 
-"service-api/check_user_exist"
 
+# use cache here
 users_router = APIRouter(prefix="/users")
 
 

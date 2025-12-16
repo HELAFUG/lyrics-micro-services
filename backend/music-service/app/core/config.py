@@ -32,10 +32,16 @@ class SRVSettings(BaseModel):
     reload_on_change: bool = True
 
 
+class DBConfig(BaseModel):
+    url: str = getenv("DB_URL")
+    echo: bool = False
+
+
 class Settings(BaseModel):
     api: APIConfig = APIConfig()
     srv: SRVSettings = SRVSettings()
     external: ExternalServices = ExternalServices()
+    db: DBConfig = DBConfig()
 
 
 settings = Settings()

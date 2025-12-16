@@ -7,4 +7,4 @@ api_router = APIRouter(prefix=settings.api.prefix)
 
 
 api_router.include_router(v1_router)
-api_router.router.include_router(external_router)
+api_router.include_router(external_router)

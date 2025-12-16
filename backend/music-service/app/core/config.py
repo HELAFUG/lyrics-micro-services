@@ -8,7 +8,7 @@ class AuthServiceConfig(BaseSettings):
 
     @property
     def check_user_exist(self):
-        return f"{self.auth_service_url}/service-api/users/check_user_exist"
+        return f"{self.auth_service_url}/api/service-api/users/check_exist_user"
 
 
 class ExternalServices(BaseModel):

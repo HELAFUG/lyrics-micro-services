@@ -17,7 +17,7 @@ class ExternalServices(BaseModel):
 
 class APIV1(BaseModel):
     prefix: str = "/v1"
-    profiles: str = "/profiles"
+    authors: str = "/authors"
     tracks: str = "/tracks"
 
 

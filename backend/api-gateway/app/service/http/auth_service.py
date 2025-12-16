@@ -26,15 +26,21 @@ async def register_new_user(
             }
 
 
-async def login_exist_user(
-    user: UserCreate,
-):
+async def login_exist_user(user: UserCreate):
     async with ClientSession() as session:
         async with session.post(
             settings.auth_service.login_url,
-            json={
+            data={
+                "grant_type": "",  # Optionally set this if needed
                 "username": user.email,
                 "password": user.password,
+                "scope": "",  # Optional, based on your requirements
+                "client_id": "",  # Optional, based on your requirements
+                "client_secret": "",  # Optional, based on your requirements
+            },
+            headers={
+                "accept": "application/json",
+                "Content-Type": "application/x-www-form-urlencoded",
             },
         ) as response:
             resp = await response.json()

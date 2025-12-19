@@ -14,7 +14,7 @@ async def create_author(
 ) -> Author | None:
     exist_author = await get_author(session=session, email=author_in.email)
     if exist_author:
-        return exist_author.email
+        return None
 
     new_author = Author(**author_in.model_dump())
     session.add(new_author)
